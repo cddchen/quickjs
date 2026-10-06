@@ -1,0 +1,71 @@
+# ==========================================
+# Android & Gradle 构建产物与缓存
+# ==========================================
+.gradle/
+**/build/
+build/
+android/build/
+android/app/build/
+
+# Android NDK / C++ 构建产物
+**/.cxx/
+android/app/.cxx/
+
+# 本地环境配置与密钥
+local.properties
+android/local.properties
+*.jks
+*.keystore
+*.key
+
+# Android 打包输出与临时文件
+*.apk
+*.aab
+*.ap_
+*.dex
+captures/
+
+# ==========================================
+# CMake / C++ 编译产物
+# ==========================================
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+*.ninja
+*.ninja_deps
+*.ninja_log
+compile_commands.json
+
+# 编译生成的目标文件与二进制库
+*.o
+*.obj
+*.so
+*.dylib
+*.a
+*.dll
+
+# ==========================================
+# IDE & 编辑器配置
+# ==========================================
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+.shelf/
+
+# VS Code (保留工程配置，忽略缓存与临时文件)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+android/.vscode/*
+!android/.vscode/c_cpp_properties.json
+
+# ==========================================
+# 系统与日志文件
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+*.log
