@@ -1,0 +1,41 @@
+name: QuickJsLatexDemo
+options:
+  bundleIdPrefix: com.example
+targets:
+  QuickJsLatexDemo:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: QuickJsLatexDemo
+        excludes:
+          - "QuickJS/fuzz"
+          - "QuickJS/tests"
+          - "QuickJS/doc"
+          - "QuickJS/examples"
+          - "QuickJS/compat"
+          - "QuickJS/.git"
+          - "QuickJS/qjs.c"
+          - "QuickJS/qjsc.c"
+          - "QuickJS/run-test262.c"
+          - "QuickJS/unicode_gen.c"
+          - "QuickJS/**/*.sh"
+          - "QuickJS/**/*.conf"
+          - "QuickJS/**/*.txt"
+          - "QuickJS/**/.*"
+          - "QuickJS/Makefile"
+          - "QuickJS/TODO"
+          - "QuickJS/Changelog"
+          - "QuickJS/VERSION"
+          - "QuickJS/repl.js"
+    settings:
+      SWIFT_OBJC_BRIDGING_HEADER: QuickJsLatexDemo/Bridge/QuickJsLatexDemo-Bridging-Header.h
+      CLANG_ENABLE_MODULES: YES
+      GENERATE_INFOPLIST_FILE: YES
+      HEADER_SEARCH_PATHS:
+        - $(inherited)
+        - $(SRCROOT)/QuickJsLatexDemo/QuickJS
+      GCC_PREPROCESSOR_DEFINITIONS:
+        - $(inherited)
+        - _GNU_SOURCE=1
+        - CONFIG_VERSION=\"2024-01-13\"

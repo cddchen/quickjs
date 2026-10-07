@@ -26,6 +26,29 @@ android/local.properties
 captures/
 
 # ==========================================
+# iOS & Xcode 构建产物与用户数据
+# ==========================================
+*.ipa
+*.xcarchive
+*.dSYM/
+*.dSYM.zip
+DerivedData/
+xcuserdata/
+*.xcuserdatad/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+.swiftpm/
+
+# ==========================================
 # CMake / C++ 编译产物
 # ==========================================
 cmake-build-*/
@@ -45,14 +68,14 @@ compile_commands.json
 *.dll
 
 # ==========================================
-# IDE & 编辑器配置
+# IDE、Language Server 与编辑器配置
 # ==========================================
 # Android Studio / IntelliJ IDEA
 .idea/
 *.iml
 .shelf/
 
-# VS Code (保留工程配置，忽略缓存与临时文件)
+# VS Code / SourceKit-LSP / xcode-build-server
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -60,6 +83,8 @@ compile_commands.json
 !.vscode/extensions.json
 android/.vscode/*
 !android/.vscode/c_cpp_properties.json
+.compile
+buildServer.json
 
 # ==========================================
 # 系统与日志文件

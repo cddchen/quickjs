@@ -1,3 +1,12 @@
 {
-  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/android/compile_commands.json"
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/android/compile_commands.json",
+  "files.associations": {
+    "*.h": "objective-c"
+  },
+  "swift.sourcekit-lsp.supported-languages": [
+    "swift",
+    "objective-c",
+    "objective-cpp",
+    "c"
+  ]
 }
