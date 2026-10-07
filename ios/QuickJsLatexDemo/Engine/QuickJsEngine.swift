@@ -10,7 +10,6 @@ final class QuickJsEngine: NSObject, @unchecked Sendable {
         super.init()
 
         self.bridge.metricDelegate = adapter
-        objc_setAssociatedObject(self, "metric_adapter", adapter, .OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 
     func initializePipeline() throws {
@@ -59,6 +58,18 @@ final class QuickJsEngine: NSObject, @unchecked Sendable {
         }
         let escapedArg = String(jsonArray.dropFirst().dropLast())
         return bridge.evaluateScript("renderAllLatexToMathMl(\(escapedArg))", filename: "<eval>") ?? ""
+    }
+
+    func convertAsync(text: String) async -> String {
+        await Task.detached(priority: .userInitiated) {
+            self.convert(text: text)
+        }.value
+    }
+
+    func initializePipelineAsync() async throws {
+        try await Task.detached(priority: .userInitiated) {
+            try self.initializePipeline()
+        }.value
     }
 }
 

@@ -18,15 +18,12 @@ final class LatexConverterViewModel {
     func setup() {
         Task {
             let qjs = QuickJsEngine { [weak self] tag, duration in
-                Task { @MainActor in
-                    self?.metricInfo = "JS 回调 -> \(tag), 耗时: \(String(format: "%.2f", duration)) ms"
-                }
+                // JS 的反向回调派发
+                self?.metricInfo = "JS 回调 -> \(tag), 耗时: \(String(format: "%.2f", duration)) ms"
             }
             do {
                 // 将重型 JS 初始化调度到后台线程池
-                try await Task.detached(priority: .userInitiated) {
-                     try qjs.initializePipeline()
-                }.value
+                try await qjs.initializePipelineAsync()
                 self.engine = qjs
                 self.isEngineReady = true
             } catch {
@@ -42,9 +39,7 @@ final class LatexConverterViewModel {
 
         let rawInput = inputText
         Task{
-            let result = await Task.detached(priority: .userInitiated) {
-                engine.convert(text: rawInput)
-            }.value
+            let result = await engine.convertAsync(text: rawInput)
             self.outputText = result
             self.isConverting = false
         }
