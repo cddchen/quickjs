@@ -11,10 +11,10 @@
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
 
 struct EngineContext {
-    JavaVM* jvm;
-    jobject listenerGlobalRef;
-    JSRuntime* rt;
-    JSContext* ctx;
+    JavaVM* jvm; // 全局 Java 虚拟机接口
+    jobject listenerGlobalRef; // Kotlin 监听器的跨生命周期全局引用
+    JSRuntime* rt; // QuickJS 底层运行时（内存堆和GC）
+    JSContext* ctx; // QuickJS 执行上下文（独立全局对象与变量空间）
 };
 
 // JS 回调 Native 的 C 绑定函数: NativeBridge.onMetric(tag, durationMs)
